@@ -1,0 +1,42 @@
+@mixin grid($colsNumber) {
+    @for $i from 1 through $colsNumber {
+        .col-#{$i} {
+            flex: 0 0 (100% / $colsNumber * $i)
+        }
+    }
+}
+
+.container {
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+    padding: $gutter;
+
+    .row {
+        display: flex;
+        flex-direction: column;
+        margin-left: -$gutter;
+        margin-right: -$gutter;
+        margin-bottom: $gutter;
+
+        [class *="col-"] {
+            flex: 0 0 100%;
+            padding: 0 $gutter;
+        }
+
+        @media screen and (min-width: 640px) {
+            flex-direction: row;
+            @include grid(12)
+        }
+    }
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    height: 50px;
+    background-color: teal;
+    margin-bottom: 10px;
+}

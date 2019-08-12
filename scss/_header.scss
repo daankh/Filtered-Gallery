@@ -1,0 +1,9 @@
+.header {
+    background-color: $color-header-bgc;
+
+    h1 {
+        color: $color-header-text;
+        font-size: 4rem;
+        font-family: $font-header;
+    }
+}
