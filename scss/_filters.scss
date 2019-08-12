@@ -1,0 +1,29 @@
+.filters {
+    #tagInput {
+        outline: none;
+        border: 1px solid $color-header-bgc;
+        font-size: 1.6rem;
+        padding: .6rem;
+        margin-bottom: 3px;
+
+        &:focus {
+            outline: 2px solid $color-header-bgc;
+        }
+    }
+
+    #showButton,
+    #hideButton {
+        outline: none;
+        border: none;
+        background-color: $color-header-bgc;
+        color: $color-header-text;
+        padding: .6rem 2rem;
+        cursor: pointer;
+        font-weight: 700;
+        transition: background-color .2s;
+
+        &:hover {
+            background-color: lighten($color-header-bgc, 3%);
+        }
+    }
+}
