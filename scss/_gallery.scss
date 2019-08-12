@@ -9,6 +9,7 @@
         overflow: hidden;
 
 
+
         img {
             display: block;
             width: 100%;
@@ -24,6 +25,7 @@
             &.invisible {
                 display: none;
             }
+
         }
 
         @media screen and (max-width: 640px) {

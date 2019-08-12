@@ -120,41 +120,76 @@ var renderGallery = function (destination, format, numberOfImages, imagesInRow, 
     }
 }
 
+var renderFilteredImages = function (destination, images, imagesInRow, gridSize) {
+    if (images.length === 0) {
+
+    }
+    destination.innerHTML = '';
+
+    var rowsNumber = Math.ceil(images.length / imagesInRow)
+    for (var r = 0; r < rowsNumber; r++) {
+        var row = document.createElement('div');
+        row.classList.add('row')
+
+        var i = r * imagesInRow;
+        var stop = i + imagesInRow;
+
+        for (i; i < stop; i++) {
+            if (i >= images.length) {
+                break;
+            }
+
+            var imageContainer = document.createElement('div')
+            imageContainer.classList.add('gallery__image')
+            imageContainer.classList.add(`col-${gridSize/imagesInRow}`)
+            imageContainer.appendChild(images[i])
+            row.appendChild(imageContainer)
+        }
+        destination.appendChild(row)
+    }
+}
+
 var renderImagesWithTags = function (imageList, containTagList, text, version) {
 
     if (imageList.length !== containTagList.length) {
         throw new Error
     }
 
+    var imagesToShow = []
+
     if (version === 'hide') {
         if (text === "") {
             imageList.forEach((image) => {
-                image.classList.add('invisible')
+                // image.classList.add('invisible')
             })
         } else {
             imageList.forEach((image, index) => {
                 if (containTagList[index]) {
-                    image.classList.add('invisible')
+                    // image.classList.add('invisible')
                 } else {
-                    image.classList.remove('invisible')
+                    // image.classList.remove('invisible')
+                    imagesToShow.push(image)
                 }
             })
         }
     } else if (version === 'show') {
         if (text === "") {
             imageList.forEach((image) => {
-                image.classList.remove('invisible')
+                // image.classList.remove('invisible')
+                imagesToShow.push(image)
             })
         } else {
             imageList.forEach((image, index) => {
                 if (containTagList[index]) {
-                    image.classList.remove('invisible')
+                    // image.classList.remove('invisible')
+                    imagesToShow.push(image)
                 } else {
-                    image.classList.add('invisible')
+                    // image.classList.add('invisible')
                 }
             })
         }
     }
+    renderFilteredImages(gallery, imagesToShow, imagesInRow, gridSize)
 }
 
 //Only for this example
